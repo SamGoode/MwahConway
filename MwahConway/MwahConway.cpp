@@ -2,41 +2,6 @@
 #include <windows.h>
 #include "Screen.h"
 
-//class Particle {
-//    private:
-//        int x;
-//        int y;
-//
-//    public:
-//        Particle() {
-//            x = 0;
-//            y = 0;
-//        }
-//
-//        Particle(const Particle& particle) {
-//            x = particle.x;
-//            y = particle.y;
-//        }
-//
-//        Particle(int x, int y) {
-//            this->x = x;
-//            this->y = y;
-//        }
-//
-//        void setCoords(int x, int y) {
-//            this->x = x;
-//            this->y = y;
-//        }
-//
-//        void display(Screen& screen) {
-//            screen.input('O', x, y);
-//        }
-//
-//        void update() {
-//            y += 1;
-//        }
-//};
-
 struct pos {
     int x;
     int y;
@@ -163,9 +128,6 @@ int main() {
 
     int mouseX = 0;
     int mouseY = 0;
-
-    //Particle* particles = nullptr;
-    //Particle particle = Particle(100, 0);
     
     CellAuto cellAuto = CellAuto(50, 10);
     cellAuto.toggleCell(4, 1);
@@ -181,7 +143,6 @@ int main() {
                 mouseY = inputRecord.Event.MouseEvent.dwMousePosition.Y;
 
                 if (inputRecord.Event.MouseEvent.dwButtonState == FROM_LEFT_1ST_BUTTON_PRESSED) {
-                    //particle.setCoords(mouseX, mouseY);
                     cellAuto.toggleCell(cellAuto.getMouseGridPos(mouseX, mouseY));
                 }
                 break;
@@ -195,15 +156,11 @@ int main() {
         //mouse cursor
         //screen.input('@', mouseX, mouseY);
 
-        //particle.display(screen);
-
         pos gridPos = cellAuto.getMouseGridPos(mouseX, mouseY);
         screen.text("Mouse screen pos: x:" + std::to_string(mouseX) + ", y:" + std::to_string(mouseY), 2, 1);
         screen.text("Mouse grid pos: x:" + std::to_string(gridPos.x) + ", y:" + std::to_string(gridPos.y), 2, 3);
 
         screen.print();
-
-        //particle.update();
 
         Sleep(1000 / tickrate);
     }
